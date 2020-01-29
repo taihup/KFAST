@@ -99,7 +99,7 @@ int main() {
 
 
 	// ------------- Image Read ------------
-	cv::Mat image = cv::imread(name, CV_LOAD_IMAGE_GRAYSCALE);
+	cv::Mat image = cv::imread(name, cv::IMREAD_GRAYSCALE);
 	if (!image.data) {
 		std::cerr << "ERROR: failed to open image. Aborting." << std::endl;
 		return EXIT_FAILURE;
@@ -193,7 +193,7 @@ int main() {
 		for (const auto& kp : KFAST_kps) converted_kps.emplace_back(static_cast<float>(kp.x), static_cast<float>(kp.y), 0.0f, 0.0f, static_cast<float>(kp.score));
 		cv::Mat image_with_kps;
 		cv::drawKeypoints(image, converted_kps, image_with_kps, {255.0, 0.0, 0.0});
-		cv::namedWindow("KFAST", CV_WINDOW_NORMAL | CV_WINDOW_KEEPRATIO);
+		cv::namedWindow("KFAST", cv::WINDOW_NORMAL | cv::WINDOW_KEEPRATIO);
 		cv::imshow("KFAST", image_with_kps);
 		cv::waitKey(0);
 	}
